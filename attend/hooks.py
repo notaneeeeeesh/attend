@@ -245,3 +245,13 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+
+website_route_rules = [{'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'}, {'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'}, {'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'},]
+
+doc_events = {
+    "User": {
+        "after_insert": "attend.api.roles.create_user_role_info"
+    }
+}
+
+# after_migrate = "your_app.api.roles.create_attend_users_after_migrate"
