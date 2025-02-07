@@ -1,0 +1,72 @@
+[
+ {
+  "date": "2025-02-07",
+  "docstatus": 0,
+  "doctype": "Attend Day",
+  "journal_entry": null,
+  "login_time": "13:35:26",
+  "logout_time": "13:35:30",
+  "modified": "2025-02-07 13:35:29.636287",
+  "name": "bate5u7sm3",
+  "parent": "student1@email.com",
+  "parentfield": "days",
+  "parenttype": "Attend Student",
+  "remarks": null
+ },
+ {
+  "date": "2025-02-05",
+  "docstatus": 0,
+  "doctype": "Attend Day",
+  "journal_entry": null,
+  "login_time": "09:25:00",
+  "logout_time": "17:10:00",
+  "modified": "2025-02-07 13:30:19.053470",
+  "name": "3fgmdbsam5",
+  "parent": "student1@email.com",
+  "parentfield": "days",
+  "parenttype": "Attend Student",
+  "remarks": null
+ },
+ {
+  "date": "2025-02-07",
+  "docstatus": 0,
+  "doctype": "Attend Day",
+  "journal_entry": null,
+  "login_time": "12:26:00",
+  "logout_time": "12:27:00",
+  "modified": "2025-02-07 12:26:28.694948",
+  "name": "ircom5prpf",
+  "parent": "student2@email.com",
+  "parentfield": "days",
+  "parenttype": "Attend Student",
+  "remarks": null
+ },
+ {
+  "date": "2025-02-04",
+  "docstatus": 0,
+  "doctype": "Attend Day",
+  "journal_entry": null,
+  "login_time": "13:01:00",
+  "logout_time": "17:00:00",
+  "modified": "2025-02-07 13:30:19.053470",
+  "name": "nu6qd5fj5l",
+  "parent": "student1@email.com",
+  "parentfield": "days",
+  "parenttype": "Attend Student",
+  "remarks": null
+ },
+ {
+  "date": "2025-02-06",
+  "docstatus": 0,
+  "doctype": "Attend Day",
+  "journal_entry": null,
+  "login_time": "09:05:00",
+  "logout_time": "16:10:00",
+  "modified": "2025-02-07 13:30:19.053470",
+  "name": "d9q1ekk0fg",
+  "parent": "student1@email.com",
+  "parentfield": "days",
+  "parenttype": "Attend Student",
+  "remarks": null
+ }
+]

@@ -27,7 +27,7 @@ import { ref, watchEffect, watch } from 'vue'
 import { createResource, Button, ListView } from 'frappe-ui'
 import { useRouter } from 'vue-router'
 import DaysList from '../components/DaysList.vue'
-// const todate = "2025-02-07"
+// const todate = "2025-02-08"
 const todate = new Date().toJSON().slice(0, 10);
 const router = useRouter()
 const errRef = ref(false)

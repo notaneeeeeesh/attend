@@ -256,7 +256,7 @@ doc_events = {
 
 fixtures = [{
   'dt': 'Role', 'filters': {'name': ('in', ('Attend Student','Attend Faculty'))}
-}]
+},'Attend Student','Attend Students','Attend Faculty','Attend Day','Attend User']
 
 
 # after_migrate = "your_app.api.roles.create_attend_users_after_migrate"

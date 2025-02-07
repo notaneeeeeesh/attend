@@ -4,21 +4,21 @@ import frappe
 def student_login(student,date,time):
     days = frappe.get_all("Attend Day",filters=[{'parent': student}] , fields=["name","date","login_time","logout_time"])
     for day in days:
-        if(day.date == date):
-            break
-    dayDoc = frappe.get_doc("Attend Day",day["name"])        
-    dayDoc.db_set('login_time',time,commit=True)
-    return dayDoc
+        dayDoc = frappe.get_doc("Attend Day",day["name"])
+        if(str(dayDoc.date) == date):
+            dayDoc.db_set('login_time',time,commit=True)
+            return dayDoc
+    return "Invalid date"
 
 @frappe.whitelist()
 def student_logout(student,date,time):
     days = frappe.get_all("Attend Day",filters=[{'parent': student}] , fields=["name","date","login_time","logout_time"])
     for day in days:
-        if(day.date == date):
-            break
-    dayDoc = frappe.get_doc("Attend Day",day["name"])        
-    dayDoc.db_set('logout_time',time,commit=True)
-    return dayDoc
+        dayDoc = frappe.get_doc("Attend Day",day["name"])
+        if(str(dayDoc.date) == date):                    
+            dayDoc.db_set('logout_time',time,commit=True)
+            return dayDoc
+    return "Invalid date"
 
 @frappe.whitelist()
 def student_create_day(student,date):

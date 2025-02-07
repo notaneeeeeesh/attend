@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="cols">
-            <ListView v-if="(daysList != '') && cols" class="h-[150px]" :columns=cols :rows="daysList.data" row-key="user" />
+            <ListView v-if="(daysList != '') && cols" class="h-[150px]" :columns=cols :rows="daysList.data" row-key="user" :options="{selectable: false}" />
         </div>
     </div>
 </template>

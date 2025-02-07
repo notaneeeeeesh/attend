@@ -1,0 +1,26 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Attend Students",
+  "email": "student1@email.com",
+  "full_name": "Student 1",
+  "modified": "2025-02-07 09:24:53.271422",
+  "name": "b659lnabqq",
+  "parent": "faculty1@email.com",
+  "parentfield": "students",
+  "parenttype": "Attend Faculty",
+  "user": "student1@email.com"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Attend Students",
+  "email": "student2@email.com",
+  "full_name": "Student 2",
+  "modified": "2025-02-07 09:24:53.271422",
+  "name": "5ivita86oj",
+  "parent": "faculty1@email.com",
+  "parentfield": "students",
+  "parenttype": "Attend Faculty",
+  "user": "student2@email.com"
+ }
+]

@@ -1,0 +1,94 @@
+[
+ {
+  "days": [
+   {
+    "date": "2025-02-07",
+    "journal_entry": null,
+    "login_time": "12:26:00",
+    "logout_time": "12:27:00",
+    "remarks": null
+   }
+  ],
+  "docstatus": 0,
+  "doctype": "Attend Student",
+  "email": "student2@email.com",
+  "faculty": null,
+  "full_name": "Student 2",
+  "modified": "2025-02-07 12:26:28.694948",
+  "name": "student2@email.com",
+  "user": "student2@email.com"
+ },
+ {
+  "days": [],
+  "docstatus": 0,
+  "doctype": "Attend Student",
+  "email": "student4@email.com",
+  "faculty": null,
+  "full_name": "Student 4",
+  "modified": "2025-02-07 09:26:41.395887",
+  "name": "student4@email.com",
+  "user": "student4@email.com"
+ },
+ {
+  "days": [],
+  "docstatus": 0,
+  "doctype": "Attend Student",
+  "email": "student5@email.com",
+  "faculty": null,
+  "full_name": "Student 5",
+  "modified": "2025-02-07 17:03:00.013374",
+  "name": "student5@email.com",
+  "user": "student5@email.com"
+ },
+ {
+  "days": [],
+  "docstatus": 0,
+  "doctype": "Attend Student",
+  "email": "student3@email.com",
+  "faculty": null,
+  "full_name": "Student 3",
+  "modified": "2025-02-05 21:22:05.112051",
+  "name": "student3@email.com",
+  "user": "student3@email.com"
+ },
+ {
+  "days": [
+   {
+    "date": "2025-02-07",
+    "journal_entry": null,
+    "login_time": "13:35:26",
+    "logout_time": "13:35:30",
+    "remarks": null
+   },
+   {
+    "date": "2025-02-05",
+    "journal_entry": null,
+    "login_time": "09:25:00",
+    "logout_time": "17:10:00",
+    "remarks": null
+   },
+   {
+    "date": "2025-02-04",
+    "journal_entry": null,
+    "login_time": "13:01:00",
+    "logout_time": "17:00:00",
+    "remarks": null
+   },
+   {
+    "date": "2025-02-06",
+    "journal_entry": null,
+    "login_time": "09:05:00",
+    "logout_time": "16:10:00",
+    "remarks": null
+   }
+  ],
+  "docstatus": 0,
+  "doctype": "Attend Student",
+  "email": "student1@email.com",
+  "faculty": null,
+  "full_name": "Student 1",
+  "modified": "2025-02-07 13:30:19.053470",
+  "name": "student1@email.com",
+  "user": "student1@email.com"
+ }
+]

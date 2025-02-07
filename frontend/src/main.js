@@ -1,4 +1,7 @@
 import './index.css'
+import Vue3Signature from "vue3-signature"
+
+
 
 import { createApp } from 'vue'
 import router from './router'
@@ -19,9 +22,8 @@ setConfig('resourceFetcher', frappeRequest)
 
 app.use(router)
 app.use(resourcesPlugin)
-
+app.use(Vue3Signature)
 app.component('Button', Button)
 app.component('Card', Card)
 app.component('Input', Input)
-
 app.mount('#app')

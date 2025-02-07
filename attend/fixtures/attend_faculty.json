@@ -1,0 +1,33 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Attend Faculty",
+  "email": "faculty1@email.com",
+  "full_name": "Faculty 1",
+  "modified": "2025-02-07 09:24:53.271422",
+  "name": "faculty1@email.com",
+  "students": [
+   {
+    "email": "student1@email.com",
+    "full_name": "Student 1",
+    "user": "student1@email.com"
+   },
+   {
+    "email": "student2@email.com",
+    "full_name": "Student 2",
+    "user": "student2@email.com"
+   }
+  ],
+  "user": "faculty1@email.com"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Attend Faculty",
+  "email": "faculty2@email.com",
+  "full_name": "Faculty 2",
+  "modified": "2025-02-06 15:17:20.886064",
+  "name": "faculty2@email.com",
+  "students": [],
+  "user": "faculty2@email.com"
+ }
+]

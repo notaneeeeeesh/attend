@@ -15,6 +15,6 @@ def get_student_from_id(student):
 @frappe.whitelist()
 def get_student_days_list(student):
     if(student != None):
-        return(frappe.get_all("Attend Day",filters=[{'parent':student}], fields=["date","login_time","logout_time"]))
+        return(frappe.get_all("Attend Day",filters=[{'parent':student}], fields=["date","login_time","logout_time"],order_by='date desc'))
     return "Bad Req"
     
