@@ -248,15 +248,24 @@ app_license = "mit"
 
 website_route_rules = [{'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'}, {'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'}, {'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'},]
 
+# doc_events = {
+#     "User": {
+#         "after_insert": "attend.api.roles.create_user_role_info"
+#     }
+# }
+
 doc_events = {
     "User": {
-        "after_insert": "attend.api.roles.create_user_role_info"
+        "on_update": "attend.api.roles.create_user_role_info"
     }
 }
 
 fixtures = [{
   'dt': 'Role', 'filters': {'name': ('in', ('Attend Student','Attend Faculty'))}
-},'Attend Student','Attend Students','Attend Faculty','Attend Day','Attend User']
+},
+  {
+  'dt': 'DocType', 'filters': {'name': ('in', ('Attend Student','Attend Faculty','Attend Students','Attend Day','Attend User'))}
+}]
 
 
 # after_migrate = "your_app.api.roles.create_attend_users_after_migrate"
