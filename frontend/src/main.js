@@ -1,8 +1,6 @@
 import './index.css'
 import Vue3Signature from "vue3-signature"
 
-
-
 import { createApp } from 'vue'
 import router from './router'
 import App from './App.vue'

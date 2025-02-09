@@ -1,5 +1,4 @@
-<template>
-    
+<template>    
         <Vue3Signature ref="signature1" :sigOption="state.option" :w="'1280px'" :h="'400px'" :disabled="state.disabled"
             class="example"></Vue3Signature>
         <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="save('image/jpeg')">Save</button>
@@ -7,8 +6,7 @@
         <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="undo">Undo</button>
         <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="addWaterMark">addWaterMark</button>
         <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="fromDataURL">fromDataURL</button>
-        <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="handleDisabled">disabled</button>
-    
+        <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="handleDisabled">disabled</button>    
 </template>
 
 <script setup>
