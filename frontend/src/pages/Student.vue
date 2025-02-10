@@ -1,74 +1,82 @@
 <template>
-  <h1 v-if="currUserRole.loading || studentid.loading || daysList.loading" class="text-3xl">Hang on a moment...</h1>
-  <div class="flex justify-center border-red-600 border-[1px]" v-if="!currUserRole.loading && !studentid.loading && !daysList.loading">
-    <div class="m-10 min-w-fit max-w-4xl w-3/4 border-red-600 border-[1px]">
-      <div class="border-red-600 border-[1px] min-w-fit">
-        <h1 v-if="currentStudent.data" class="text-3xl">Hello {{ currentStudent.data[0].full_name }}, it is {{ todate }}
-        </h1>
-        <h1 v-if="!logFlag.dayExists" class="text-2xl">It's a New Day!</h1>
-        <h1 v-if="logFlag.dayExists && logFlag.nullLogin && logFlag.nullLogout" class="text-2xl">You're yet to sign in!
-        </h1>
-        <h1 v-if="logFlag.dayExists && !logFlag.nullLogin && !logFlag.nullLogout" class="text-2xl">You're Done With work
-          for today!</h1>
-        <h1 v-if="logFlag.dayExists && !logFlag.nullLogin && logFlag.nullLogout" class="text-2xl">You're yet to sign
-          out!
-        </h1>
-      </div>
-      <p class="text-xl">Below is your work logsheet</p>
-      <DaysList class="py-6" v-if="studentid.data && daysList.data" :myList="daysList.data" :compStudId="studentid.data" />
-      <Button v-if="!logFlag.dayExists" :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false"
-        @click="handleNewDay">
-        New Day?
-      </Button>
-      <div v-if="logFlag.dayExists && logFlag.nullLogin">
-        <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="recordLogin">
-          Submit Login
-        </Button>
-        <div class="p-2 flex flex-row">
-          <div>
-            <p class="text-center">Please Provide Signature</p>
-            <Vue3Signature ref="signature" :sigOption="state.option" :w="'300px'" :h="'200px'"
-              :disabled="state.disabled" class="inline-block border-[5px] border-[rgb(35,35,35)] rounded" />
-          </div>
+  <!-- <div class="min-w-[800px]"> -->
+    <h1 v-if="currUserRole.loading || studentid.loading || daysList.loading" class="text-3xl">Hang on a moment...</h1>
+    <div class="flex justify-center " v-if="!currUserRole.loading && !studentid.loading && !daysList.loading">
+      <div class="m-10 min-w-fit max-w-4xl w-3/4 h-3/4 min-h-fit border-gray-400 border-[2px] rounded p-5">
+        <div class="min-w-fit min-h-fit">
+          <h1 v-if="currentStudent.data" class="text-3xl">Hello {{ currentStudent.data[0].full_name }}, it is {{ todate
+            }}
+          </h1>
+          <h1 v-if="!logFlag.dayExists" class="text-2xl">It's a New Day!</h1>
+          <h1 v-if="logFlag.dayExists && logFlag.nullLogin && logFlag.nullLogout" class="text-2xl">You're yet to sign
+            in!
+          </h1>
+          <h1 v-if="logFlag.dayExists && !logFlag.nullLogin && !logFlag.nullLogout" class="text-2xl">You're Done With
+            work
+            for today!</h1>
+          <h1 v-if="logFlag.dayExists && !logFlag.nullLogin && logFlag.nullLogout" class="text-2xl">You're yet to sign
+            out!
+          </h1>
         </div>
-        <!-- <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false"
-        @click="save('image/jpeg')">Save</Button> -->
-        <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="clear">Clear
-          Signature</Button>
-        <!-- <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="undo">Undo</Button> -->
-      </div>
-      <div class="border-red-600 border-[1px] min-w-fit" v-if="logFlag.dayExists && !logFlag.nullLogin && logFlag.nullLogout">
-        <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="recordLogout">
-          Submit Logout
-        </Button>
-        <div class="p-2 flex flex-row justify-evenly border-red-600 border-[1px] min-w-fit">
-          <div class="flex flex-col border-red-600 border-[1px]">
-            <p class="text-center">Please Provide Signature</p>
-            <Vue3Signature ref="signature" :sigOption="state.option" :w="'300px'" :h="'200px'"
-              :disabled="state.disabled" class=" border-[5px] border-[rgb(35,35,35)] rounded" />
-
-            <!-- <input class="w-[300px] h-[200px]  inline-block" type="text" /> -->
+        <p class="text-xl">Here's is your work attendance sheet</p>
+        <DaysList class="py-4 px-3 my-2 border-gray-400 border-[2px] rounded " v-if="studentid.data && daysList.data"
+          :myList="daysList.data" :compStudId="studentid.data" />
+        <div class=" min-w-fit min-h-fit" v-if="logFlag.dayExists && logFlag.nullLogin">
+          <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="recordLogin">
+            Submit Login
+          </Button>
+          <div class="p-2 flex flex-row justify-evenly  min-w-fit  min-h-fit">
+            <div class="flex flex-col ">
+              <p class="text-center">Please Provide Signature</p>
+              <Vue3Signature ref="signature" :sigOption="state.option" :w="'300px'" :h="'200px'"
+                :disabled="state.disabled" class="border-[5px] border-[rgb(35,35,35)] rounded" />
+            </div>
           </div>
-          <div class="flex flex-col items-center border-red-600 border-[1px]">
-            <p class="text-nowrap border-red-600 border-[1px]">Please add your Journal Entry</p>
-            <Textarea :variant="'subtle'" :ref_for="true" placeholder="Journal Entry" :disabled="false"
-              v-model="journal_entry" class="w-[180px] h-[200px] border-red-600 border-[1px] " />
-            
-          </div>
-        </div>
-        <div>
           <!-- <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false"
-          @click="save('image/jpeg')">Save</Button> -->
+        @click="save('image/jpeg')">Save</Button> -->
           <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="clear">Clear
             Signature</Button>
           <!-- <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="undo">Undo</Button> -->
         </div>
+        <div class=" min-w-fit min-h-fit" v-if="logFlag.dayExists && !logFlag.nullLogin && logFlag.nullLogout">
+          <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="recordLogout">
+            Submit Logout
+          </Button>
+          <div class="p-2 flex flex-row justify-evenly  min-w-fit min-h-fit">
+            <div class="flex flex-col  ">
+              <p class="text-center">Please Provide Signature</p>
+              <Vue3Signature ref="signature" :sigOption="state.option" :w="'300px'" :h="'200px'"
+                :disabled="state.disabled" class=" border-[5px] border-[rgb(35,35,35)] rounded" />
+
+              <!-- <input class="w-[300px] h-[200px]  inline-block" type="text" /> -->
+            </div>
+            <div class="flex flex-col items-center  min-w-fit min-h-fit">
+              <p class="text-nowrap ">Please add your Journal Entry</p>
+              <Textarea :variant="'subtle'" :ref_for="true" placeholder="Journal Entry" :disabled="false"
+                v-model="journal_entry" class="w-[180px] h-[200px]  " />
+
+            </div>
+          </div>
+          <div>
+            <!-- <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false"
+          @click="save('image/jpeg')">Save</Button> -->
+            <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="clear">Clear
+              Signature</Button>
+            <!-- <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="undo">Undo</Button> -->
+          </div>
+        </div>
+        <div class="flex">
+          <Button class="" v-if="!logFlag.dayExists" :variant="'outline'" theme="gray" size="lg" label="Button"
+            :loading="false" @click="handleNewDay">
+            New Day?
+          </Button>
+          <Button class="ml-auto " :variant="'solid'" theme="gray" size="lg" label="Button" :loading="false"
+            @click="userLogout">User Logout</Button>
+        </div>
       </div>
-      <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="printToday">
-        Print Today
-      </Button>
     </div>
-  </div>
+  <!-- </div> -->
+
 </template>
 
 <script setup>
@@ -77,6 +85,7 @@ import { ref, watchEffect, watch, reactive } from 'vue'
 import { createResource, Button, Textarea } from 'frappe-ui'
 import { useRouter } from 'vue-router'
 import DaysList from '../components/DaysList.vue'
+import { session } from '../data/session'
 
 const state = reactive({
   count: 0,
@@ -98,10 +107,6 @@ const clear = () => {
   signature.value.clear()
 }
 
-// const undo = () => {
-//   signature.value.undo();
-// }
-// const todate = "2025-02-09"
 const todate = new Date().toJSON().slice(0, 10);
 const router = useRouter()
 const errRef = ref(false)
@@ -201,8 +206,8 @@ const recordLogin = () => {
   })
   loginResource.promise.then(() => {
     daysList.submit({
-    'student': studentid.data
-  })
+      'student': studentid.data
+    })
   })
   // window.location.reload();
   // daysList.reset()
@@ -221,10 +226,10 @@ const recordLogout = () => {
   })
   logoutResource.promise.then(() => {
     daysList.submit({
-    'student': studentid.data
+      'student': studentid.data
+    })
   })
-  })
-   
+
 }
 
 const handleNewDay = () => {
@@ -246,4 +251,8 @@ const printToday = () => {
   console.log(loginResource.promise)
 }
 
+const userLogout = () => {
+  session.logout.submit();
+  window.location.reload();
+}
 </script>
