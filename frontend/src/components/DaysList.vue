@@ -35,7 +35,6 @@ const keys = {
 }
 
 const keysList = Object.keys(JSON.parse(JSON.stringify(props.myList))[0])
-
 const cols = JSON.parse(JSON.stringify(keysList)).map((key) => keys[key])
 
 </script>

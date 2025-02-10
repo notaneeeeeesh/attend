@@ -18,8 +18,9 @@
             out!
           </h1>
         </div>
-        <p class="text-xl">Here's is your work attendance sheet</p>
-        <DaysList class="py-4 px-3 my-2 border-gray-400 border-[2px] rounded " v-if="studentid.data && daysList.data"
+        <p v-if="daysList.data.length != 0" class="text-xl">Here's is your work attendance sheet</p>
+        <p v-if="daysList.data.length == 0">Your worklog is empty, make your first day entry below!</p>
+        <DaysList v-if="studentid.data && (daysList.data.length !=0)" class="py-4 px-3 my-2 border-gray-400 border-[2px] rounded " 
           :myList="daysList.data" :compStudId="studentid.data" />
         <div class=" min-w-fit min-h-fit" v-if="logFlag.dayExists && logFlag.nullLogin">
           <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="recordLogin">
@@ -32,9 +33,9 @@
                 :disabled="state.disabled" class="border-[5px] border-[rgb(35,35,35)] rounded" />
             </div>
           </div>
-          <!-- <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false"
+          <!-- <Button class="mx-2" :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false"
         @click="save('image/jpeg')">Save</Button> -->
-          <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="clear">Clear
+          <Button class="mx-2" :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="clear">Clear
             Signature</Button>
           <!-- <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="undo">Undo</Button> -->
         </div>
@@ -58,9 +59,9 @@
             </div>
           </div>
           <div>
-            <!-- <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false"
+            <!-- <Button class="mx-2" :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false"
           @click="save('image/jpeg')">Save</Button> -->
-            <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="clear">Clear
+            <Button class="mx-2" :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="clear">Clear
               Signature</Button>
             <!-- <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="undo">Undo</Button> -->
           </div>
@@ -115,8 +116,7 @@ const logFlag = ref({
   nullLogin: true,
   nullLogout: true
 })
-const testDate = new Date()
-console.log(testDate.toJSON())
+
 const today = ref()
 
 const currUserRole = createResource({
@@ -145,13 +145,6 @@ studentid.promise.then(() => {
   })
 })
 
-// watch(studentid, () => {
-//   currentStudent.submit({ 'student': studentid.data })
-//   daysList.submit({
-//     'student': studentid.data
-//   })
-// })
-
 const currentStudent = createResource({
   url: 'attend.api.fetchers.get_student_from_id',
 })
@@ -173,7 +166,6 @@ const logoutResource = createResource({
 })
 
 watch(daysList, () => {
-  console.log("watching daysList")
   if (daysList.data != null) {
     var length = daysList.data.length
     for (var i = 0; i < length; i++) {
@@ -181,11 +173,9 @@ watch(daysList, () => {
       if (day.date == todate) {
         logFlag.value.dayExists = true
         if (day.login_time !== null) {
-          console.log("reached login block")
           logFlag.value.nullLogin = false
         }
         if (day.logout_time !== null) {
-          console.log("reached logout block")
           logFlag.value.nullLogout = false
         }
         today.value = day

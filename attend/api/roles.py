@@ -13,7 +13,8 @@ def get_user_role():
         return "Faculty"
     else:
         return "Unknown"
-    
+
+@frappe.whitelist()    
 def create_user_role_info(user, method):
     # Get assigned roles for the user
     roles = frappe.get_all("Has Role", filters={"parent": user.name}, fields=["role"])
