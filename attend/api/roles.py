@@ -38,20 +38,3 @@ def create_user_role_info(user, method):
                 role_entry.insert()
         frappe.db.commit()    
     return        
-
-# def create_attend_users_after_migrate():
-#     existing_users = frappe.get_all("User", fields=["name"])
-#     for user in existing_users:
-#         roles = frappe.get_all("Has Role",filters={'parent':user['name']},fields=["role"])
-#         for role in roles:
-#             if role['role'] in ["Attend Student","Attend Faculty"]:
-#                 if not frappe.db.exists("Attend User", {"user": user["name"]}):  # Avoid duplicates
-#                     print(user,role)
-#                     new_entry = frappe.get_doc({
-#                         "doctype": "Attend User",
-#                         "user": user["name"],
-#                         "role": role["role"].removeprefix('Attend ')
-#                     })
-#                     new_entry.insert()
-#                     frappe.db.commit()
-#                 break
