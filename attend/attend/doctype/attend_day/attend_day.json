@@ -16,7 +16,8 @@
   "journal_entry",
   "section_break_hrxl",
   "remarks",
-  "coordinator_signature"
+  "coordinator_signature",
+  "approved"
  ],
  "fields": [
   {
@@ -73,12 +74,18 @@
    "fieldname": "coordinator_signature",
    "fieldtype": "Signature",
    "label": "Coordinator Signature"
+  },
+  {
+   "default": "0",
+   "fieldname": "approved",
+   "fieldtype": "Check",
+   "label": "Approved?"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-02-08 23:34:44.444467",
+ "modified": "2025-02-12 19:47:00.611619",
  "modified_by": "Administrator",
  "module": "Attend",
  "name": "Attend Day",

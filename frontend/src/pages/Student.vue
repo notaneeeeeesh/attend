@@ -21,8 +21,8 @@
         <p v-if="daysList.data.length != 0" class="text-xl">Here's is your work attendance sheet</p>
         <p v-if="daysList.data.length == 0">Your worklog is empty, make your first day entry below!</p>
         <DaysList v-if="studentid.data && (daysList.data.length !=0)" class="py-4 px-3 my-2 border-gray-400 border-[2px] rounded " 
-          :myList="daysList.data" :compStudId="studentid.data" />
-        <div class=" min-w-fit min-h-fit" v-if="logFlag.dayExists && logFlag.nullLogin">
+          :myList="daysList.data" />
+        <div class="min-w-fit min-h-fit" v-if="logFlag.dayExists && logFlag.nullLogin">
           <Button :variant="'outline'" theme="gray" size="lg" label="Button" :loading="false" @click="recordLogin">
             Submit Login
           </Button>
@@ -48,14 +48,11 @@
               <p class="text-center">Please Provide Signature</p>
               <Vue3Signature ref="signature" :sigOption="state.option" :w="'300px'" :h="'200px'"
                 :disabled="state.disabled" class=" border-[5px] border-[rgb(35,35,35)] rounded" />
-
-              <!-- <input class="w-[300px] h-[200px]  inline-block" type="text" /> -->
             </div>
             <div class="flex flex-col items-center  min-w-fit min-h-fit">
               <p class="text-nowrap ">Please add your Journal Entry</p>
               <Textarea :variant="'subtle'" :ref_for="true" placeholder="Journal Entry" :disabled="false"
-                v-model="journal_entry" class="w-[180px] h-[200px]  " />
-
+                v-model="journal_entry" class="w-[180px] h-[200px] " />
             </div>
           </div>
           <div>
@@ -71,6 +68,8 @@
             :loading="false" @click="handleNewDay">
             New Day?
           </Button>
+          <!-- <Button class="ml-auto " :variant="'solid'" theme="gray" size="lg" label="Button" :loading="false"
+            @click="printToday">Print</Button> -->
           <Button class="ml-auto " :variant="'solid'" theme="gray" size="lg" label="Button" :loading="false"
             @click="userLogout">User Logout</Button>
         </div>
@@ -158,18 +157,36 @@ const newDayResource = createResource({
 })
 
 const loginResource = createResource({
-  url: 'attend.api.actions.student_login'
+  url: 'attend.api.actions.student_login_using_name'
 })
 
 const logoutResource = createResource({
-  url: 'attend.api.actions.student_logout'
+  url: 'attend.api.actions.student_logout_using_name'
 })
+
+// watch(daysList, () => {
+//   if (daysList.data != null) {
+//     var length = daysList.data.length
+//     for (var i = 0; i < length; i++) {
+//       const day = daysList.data[i]
+//       if (day.date == todate) {
+//         logFlag.value.dayExists = true
+//         if (day.login_time !== null) {
+//           logFlag.value.nullLogin = false
+//         }
+//         if (day.logout_time !== null) {
+//           logFlag.value.nullLogout = false
+//         }
+//         today.value = day
+//         break;
+//       }
+//     }
+//   }
+// })
 
 watch(daysList, () => {
   if (daysList.data != null) {
-    var length = daysList.data.length
-    for (var i = 0; i < length; i++) {
-      const day = daysList.data[i]
+      const day = daysList.data[0]
       if (day.date == todate) {
         logFlag.value.dayExists = true
         if (day.login_time !== null) {
@@ -179,17 +196,16 @@ watch(daysList, () => {
           logFlag.value.nullLogout = false
         }
         today.value = day
-        break;
-      }
     }
   }
 })
 
+
 const recordLogin = () => {
   // today.value.login_time = new Date().toLocaleTimeString('en-US', { hour12: false })
   loginResource.submit({
+    'name': today.value.name,
     'student': studentid.data,
-    'date': todate,
     // 'time': today.value.login_time,
     'time': new Date().toLocaleTimeString('en-US', { hour12: false }),
     'signature': signature.value.save()
@@ -201,14 +217,13 @@ const recordLogin = () => {
   })
   // window.location.reload();
   // daysList.reset()
-
 }
 
 const recordLogout = () => {
   // today.value.logout_time = new Date().toLocaleTimeString('en-US', { hour12: false })
   logoutResource.submit({
+    'name': today.value.name,
     'student': studentid.data,
-    'date': todate,
     // 'time': today.value.logout_time,
     'time': new Date().toLocaleTimeString('en-US', { hour12: false }),
     'signature': signature.value.save(),
@@ -219,7 +234,6 @@ const recordLogout = () => {
       'student': studentid.data
     })
   })
-
 }
 
 const handleNewDay = () => {
@@ -238,7 +252,6 @@ const printToday = () => {
   console.log(daysList.data)
   // console.log(journal_entry.value)
   console.log(studentid)
-  console.log(loginResource.promise)
 }
 
 const userLogout = () => {

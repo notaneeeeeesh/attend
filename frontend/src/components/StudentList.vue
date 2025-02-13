@@ -1,52 +1,37 @@
 <template>
     <div>
-        <div v-if="cols">
-            <ListView v-if="cols" class="h-[150px]" :columns=cols :rows="studentList.data" row-key="user" />
-
-            Student List
+        <div v-if="cols.length != 0">
+            <ListView class="h-[150px]" :columns=cols :rows="myList" row-key="user" :options="{selectable: false, showTooltip: false}" />
         </div>
+        <!-- <Button class="ml-auto mx-2" :variant="'solid'" theme="gray" size="lg" label="Button" :loading="false"
+        @click="printData">Print</Button> -->
     </div>
 </template>
 
 <script setup>
 
-import { ref, watch } from 'vue'
-import { createResource, ListView } from 'frappe-ui'
-
-const props = defineProps({facultyid: String})
-
-const keysList = ref()
-const cols = ref()
-
-const studentList = createResource({
-    url: 'attend.api.fetchers.get_faculty_student_list',
-})
-
-studentList.submit({ 'faculty': props.facultyid })
-
-watch(studentList, () => {
-    if (studentList.data) {
-        keysList.value = Object.keys(JSON.parse(JSON.stringify(studentList.data))[0])
-        console.log("keysList:", keysList.value)
-    }
-})
-
-watch(keysList, () => {
-    cols.value = JSON.parse(JSON.stringify(keysList.value)).map((key) => keys[key])
-    console.log("cols",cols.value)
-})
-
+import {  ListView } from 'frappe-ui'
 const keys = {
     'full_name': {
         label: 'Full Name',
         key: 'full_name',
-        width: '300px'
     },
     'user': {
         label: 'Email',
         key: 'user',
-        width: '300px'
     },
 }
 
+const props = defineProps(['myList'])
+const keysList = Object.keys(props.myList[0])
+const cols = []
+// const cols = keysList.map((key) => keys[key])
+keysList.map((key) => {
+    if(Object.keys(keys).includes(key)) cols.push(keys[key])  
+})
+// const printData = () => {
+//     console.log("keys",keysList)
+//     console.log("cols",cols)    
+//     console.log(props.myList)
+// }
 </script>
